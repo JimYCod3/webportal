@@ -13,8 +13,9 @@ public interface TicketsRepo extends JpaRepository<Tickets, String>/*
                                                                     */ {
     // 1. Annotation for abstract function, filter the tickets records in DB against
     // QR Code
-    @Query("SELECT AB FROM Tickets ab where ab.id = :123456 and ab.qrcodeString = :qweer")
-    //2. Abstract function the return a Optional<Tickets> and accept a String parameter "qrcode"
-    Optional<Tickets> fileterByQrcode(String qweer, Integer 123456);
+    @Query("SELECT ab FROM Tickets ab where ab.id = :qwe and ab.qrcode = :abcdqwer")
+    // 2. Abstract function the return a Optional<Tickets> and accept a String
+    // parameter "qrcode"
+    Optional<Tickets> fileterByQrcode(Integer qwe, String abcdqwer);
 
 }

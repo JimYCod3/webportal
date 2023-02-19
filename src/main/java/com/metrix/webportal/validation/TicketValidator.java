@@ -31,19 +31,31 @@ public class TicketValidator implements Validator {
         Optional<Events> oEvent;
         //2. Find the events object from DB by the event id of the SellForm object
         Optional<SellForm> eventsId = evtRepo.findById(ticket.getEventId());
-        if(eventsId.isPresent()/* 3. Check whether the optional event is NOT present */){
+        if(!eventsId.isPresent()/* 3. Check whether the optional event is NOT present */){
             //4. If not, assign an error messasge "Event not found!" to field eventId
            errors.rejectValue("event.id", "","Event not found!", null);
         } else {
             /* 5. Check whether the event is start sell
+            
                   If not, assign an error messasge "Event not start sell yet!" to field eventId
             */
-                if(Events.isStartSell = true)
-            /* 6. Check whether the Venue of the event is full. checking is
+            
+            event = oEvent.get();
+             /* 6. Check whether the Venue of the event is full. checking is
                Number of Seat < (ticket already sold for this event + number of ticket in SellForm object)
                If yes, assign an error messasge String.format("Not enough seat! {%d} seat left!", (numOfSeat - ticketSold)) to field numberOfTicket
-            */        
+            */ 
+            if(!event.isStartSell()){
+                errors.rejectValue("event.id", "", "Event not start sell yet!");
+            } else {
+                int numberOfSeat = event.getVenue().getNumberOfSeat();
+                int ticketSold = event.getTickets().size()
+                if(numberOfSeat < ticketSold + ticket.getNumberOfTicket())
+                errors.rejectValue("numberOfTicket", "", String.format("Not enough seat! %d seat left!", (numOfSeat - ticketSold)) , null);
+            }
+                
+                  
         }
     }
-    
+
 }
