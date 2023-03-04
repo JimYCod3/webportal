@@ -45,7 +45,11 @@ public class TicketsController {
 
     //4a. Annotation for handling HTTP GET request from "/list/{eventId}"
     @GetMapping("/list/{eventId}")
+<<<<<<< HEAD
     public String list(ModelMap m, @PathVariable("eventId") Integer eventId) throws MetrixException{
+=======
+    public String list(ModelMap m, @PathVariable Integer eventId) throws MetrixException{
+>>>>>>> origin/master
             /*5. Annotation for mapping the variable "eventId" in the path*/
         /*6. Find the Events from DB, if not found, throw the following exception */
         Optional<Events> event = eventsRepo.findById(eventId);

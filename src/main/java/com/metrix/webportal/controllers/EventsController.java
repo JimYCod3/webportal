@@ -65,7 +65,11 @@ public class EventsController {
 
     //4c. Annotation for handling HTTP GET request from "/update/{id}"
     @GetMapping("/update/{id}")
+<<<<<<< HEAD
     public String update(ModelMap m, @PathVariable("id") Integer id) throws MetrixException{
+=======
+    public String update(ModelMap m, @PathVariable Integer id) throws MetrixException{
+>>>>>>> origin/master
             /*13. Annotation for mapping the variable "id" in the path*/
         /*14. Find the Events from DB, if not found, throw the following exception */
         Optional<Events> event = repo.findById("id");
@@ -80,7 +84,11 @@ public class EventsController {
 
     //8b. Annotation for handling HTTP POST request from /update/{id}
     @PostMapping("/update/{id}")
+<<<<<<< HEAD
     public String update(ModelMap m, @PathVariable("id") Integer id, @Valid @ModelAttribute("updEvent") Events updEvent, BindingResult result) throws MetrixException{
+=======
+    public String update(ModelMap m, @PathVariable Integer id, @Valid @ModelAttribute("updEvent") Events updEvent, BindingResult result) throws MetrixException{
+>>>>>>> origin/master
             /*13. Annotation for mapping the variable "id" in the path* /*9. Annotation for hibernate validation against updEvent object*/ /*10b. Annotation for mapping HTML from body with name "updEvent"*/
         /*14. Find the Events from DB, if not found, throw the following exception */
         Optional<Events> event = repo.findById("id");
@@ -107,7 +115,11 @@ public class EventsController {
 
     //4c. Annotation for handling HTTP GET request from "/delete/{id}"
     @GetMapping("/delete/{id}")
+<<<<<<< HEAD
     public String delete(@PathVariable("id") Integer id) throws MetrixException{
+=======
+    public String delete(@PathVariable Integer id) throws MetrixException{
+>>>>>>> origin/master
             /*13. Annotation for mapping the variable "id" in the path*/
     /*14. Find the Events from DB, if not found, throw the following exception */
         Optional<Events> event = repo.findById("id");
