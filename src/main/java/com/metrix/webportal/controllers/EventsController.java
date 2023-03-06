@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import com.metrix.webportal.models.Events;
 import com.metrix.webportal.repos.EventsRepo;
 import com.metrix.webportal.repos.VenuesRepo;
-import com.metrix.webportal.repos.TicketsRepo;
 import com.metrix.webportal.validation.MetrixException;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +25,6 @@ public class EventsController {
     @Autowired
     private EventsRepo repo;
 
-    @Autowired
-    private TicketsRepo ticketsRepo;
     //3. Annotation for Dependency injection
     @Autowired
     private VenuesRepo venuesRepo;
@@ -65,14 +62,12 @@ public class EventsController {
 
     //4c. Annotation for handling HTTP GET request from "/update/{id}"
     @GetMapping("/update/{id}")
-<<<<<<< HEAD
-    public String update(ModelMap m, @PathVariable("id") Integer id) throws MetrixException{
-=======
+
     public String update(ModelMap m, @PathVariable Integer id) throws MetrixException{
->>>>>>> origin/master
+
             /*13. Annotation for mapping the variable "id" in the path*/
         /*14. Find the Events from DB, if not found, throw the following exception */
-        Optional<Events> event = repo.findById("id");
+        Optional<Events> event = repo.findById(id);
         if(!event.isPresent()) {
             throw new MetrixException(-1, String.format("Event with id {%d} not found!", id),
                     "/" + VIEW_PREFIX + "index");
@@ -84,14 +79,12 @@ public class EventsController {
 
     //8b. Annotation for handling HTTP POST request from /update/{id}
     @PostMapping("/update/{id}")
-<<<<<<< HEAD
+
     public String update(ModelMap m, @PathVariable("id") Integer id, @Valid @ModelAttribute("updEvent") Events updEvent, BindingResult result) throws MetrixException{
-=======
-    public String update(ModelMap m, @PathVariable Integer id, @Valid @ModelAttribute("updEvent") Events updEvent, BindingResult result) throws MetrixException{
->>>>>>> origin/master
+
             /*13. Annotation for mapping the variable "id" in the path* /*9. Annotation for hibernate validation against updEvent object*/ /*10b. Annotation for mapping HTML from body with name "updEvent"*/
         /*14. Find the Events from DB, if not found, throw the following exception */
-        Optional<Events> event = repo.findById("id");
+        Optional<Events> event = repo.findById(id);
         if(!event.isPresent()) {
             throw new MetrixException(-1, String.format("Event with id {%d} not found!", id),
                     "/" + VIEW_PREFIX + "index");
@@ -115,14 +108,12 @@ public class EventsController {
 
     //4c. Annotation for handling HTTP GET request from "/delete/{id}"
     @GetMapping("/delete/{id}")
-<<<<<<< HEAD
+
     public String delete(@PathVariable("id") Integer id) throws MetrixException{
-=======
-    public String delete(@PathVariable Integer id) throws MetrixException{
->>>>>>> origin/master
+
             /*13. Annotation for mapping the variable "id" in the path*/
     /*14. Find the Events from DB, if not found, throw the following exception */
-        Optional<Events> event = repo.findById("id");
+        Optional<Events> event = repo.findById(id);
         if(event.isPresent()){
             throw new MetrixException(-1, String.format("Event with id {%d} not found!", id),
                     "/" + VIEW_PREFIX + "index");
@@ -133,7 +124,7 @@ public class EventsController {
         }
 
         /*19. delete the record from DB by id */
-        repo.deleteById("id");
+        repo.deleteById(id);
         return "redirect:/" + VIEW_PREFIX + "index";
     }
 }

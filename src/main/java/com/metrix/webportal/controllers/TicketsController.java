@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,11 +44,9 @@ public class TicketsController {
 
     //4a. Annotation for handling HTTP GET request from "/list/{eventId}"
     @GetMapping("/list/{eventId}")
-<<<<<<< HEAD
+
     public String list(ModelMap m, @PathVariable("eventId") Integer eventId) throws MetrixException{
-=======
-    public String list(ModelMap m, @PathVariable Integer eventId) throws MetrixException{
->>>>>>> origin/master
+
             /*5. Annotation for mapping the variable "eventId" in the path*/
         /*6. Find the Events from DB, if not found, throw the following exception */
         Optional<Events> event = eventsRepo.findById(eventId);
@@ -130,7 +127,7 @@ public class TicketsController {
             throw new MetrixException(-2, "Ticket not found!", "/" + VIEW_PREFIX + "query");
         }
         m.addAttribute("ticketDetail", ticket);/*15. Get the Tickets object from the return of Q.14 */
-        return VIEW_PREFIX + "detail"; 
+        return VIEW_PREFIX + "detail";
     }
 
     //8c. Annotation for handling HTTP POST request from "/claim"
